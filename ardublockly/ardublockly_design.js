@@ -400,7 +400,7 @@ Ardublockly.sketchNameSizeEffect = function() {
   var correctInput = function() {
     // If nothing in the input, add default name
     if ($(this).val() == '') {
-      $(this).val('Sketch_Name');
+      $(this).val('Mon_projet');
       $(this).attr('size', 10);
     }
     // Replace all spaces with underscores
