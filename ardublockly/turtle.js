@@ -34,11 +34,6 @@ Turtle.init = function() {
 
   var visualization = document.getElementById('visualization');
 
-  // if (document.getElementById('submitButton')) {
-    // BlocklyGames.bindClick('submitButton', Turtle.submitToReddit);
-  // }
-
-
 
   Turtle.ctxDisplay = document.getElementById('display').getContext('2d');
   Turtle.ctxScratch = document.getElementById('scratch').getContext('2d');
@@ -51,6 +46,9 @@ Turtle.init = function() {
 
   setTimeout(Turtle.importInterpreter, 1);
   // Lazy-load the syntax-highlighting.
+  
+  var sliderSvg = document.getElementById('slider');
+  Turtle.speedSlider = new Slider(10, 35, 130, sliderSvg);
 };
 
 
@@ -299,6 +297,11 @@ Turtle.execute = function() {
   Turtle.pidList.push(setTimeout(Turtle.executeChunk_, 100));
 };
 
+Turtle.map = function(x, in_min, in_max, out_min, out_max)
+{
+  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+};
+
 
 /**
  * Execute a bite-sized chunk of the user's code.
@@ -307,7 +310,8 @@ Turtle.execute = function() {
 Turtle.executeChunk_ = function() {
   // All tasks should be complete now.  Clean up the PID list.
   Turtle.pidList.length = 0;
-  Turtle.pause = 10; //Permet de gerer la vitesse de la simulation
+	var stepSpeed = Turtle.speedSlider.getValue();
+	Turtle.pause = Turtle.map(stepSpeed, 0, 1, 20, 0);
   var go;
   do {
     try {
@@ -343,7 +347,7 @@ Turtle.animate = function(id) {
   if (id) {
     Ardublockly.workspace.highlightBlock(null);
     // Scale the speed non-linearly, to give better precision at the fast end.
-    var stepSpeed = 1;
+    var stepSpeed = 1000 * Math.pow(1 - Turtle.speedSlider.getValue(), 2);
     Turtle.pause = Math.max(1, stepSpeed);
   }
 };

@@ -219,17 +219,38 @@ ul.side-nav li.side-menu-begin {
 }
 
 #button_execute{
-  position: abolute;
-  left: 30px;
-  bottom: 70px;
+  position: relative;
+  left: 20px;
+  top: -20px;
   display: active;
 }
 
 #button_reset{
-  position: absolute;
-  left: 80px;
-  bottom: 70px;
+  position: relative;
+  left: 30px;
+  bottom: 20px;
   display: active;
+}
+
+/* Slider. */
+.sliderTrack {
+  stroke: #aaa;
+  stroke-width: 6px;
+  stroke-linecap: round;
+}
+.sliderKnob {
+  fill: #ddd;
+  stroke: #bbc;
+  stroke-width: 1px;
+  stroke-linejoin: round;
+}
+.sliderKnob:hover {
+  fill: #eee;
+}
+
+.slider2 {
+  position: relative;
+  right: -100px;
 }
 
 /****************/
@@ -330,6 +351,7 @@ ul.side-nav li.side-menu-begin {
     height: 40px;
   }
 }
+
 
 
 /*************/

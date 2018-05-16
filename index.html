@@ -107,7 +107,6 @@
           <div class="collapsible-body">
             <ul>
 			  <li id="menu_example_1"><a href="#!">Scott Dessine</a></li>
-              <li id="menu_example_2"><a href="#!">Blink</a></li>
             </ul>
           </div>
         </li>
@@ -194,11 +193,24 @@
             <div class="collapsible-body" style="position:relative" id="xml_collapsible_body">
 			<textarea  id="content_xml" style="display:none" class="content content_height_transition content_xml_large" wrap="soft"></textarea>
 			  <div id="visualization">
-				<canvas id="scratch" width="400" height="400" style="display: none"></canvas>
-				<canvas id="display" width="400" height="400"></canvas>
-			  </div>
+				<canvas id="scratch" width="400" height="350" style="display: none"></canvas>
+				<canvas id="display" width="400" height="350"></canvas>
 				<a class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_orange" id="button_execute"><i class="mdi-av-play-arrow"></i></a>
-				<a class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_orange" id="button_reset"><i class="mdi-action-delete"></i></a>
+					<a class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_orange" id="button_reset"><i class="mdi-action-delete"></i></a>
+					<svg id="slider" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="150" height="50" class="slider2">
+					  <!-- Slow icon. -->
+					  <clipPath id="slowClipPath"><rect width="26" height="12" x="5" y="14"></rect></clipPath>
+					  <image xlink:href="ardublockly/turtle/icons.png" height="42" width="84" x="-21" y="-10" clip-path="url(#slowClipPath)"></image><!-- Fast icon. -->
+					  <clipPath id="fastClipPath">
+						<rect width="26" height="16" x="120" y="10"></rect>
+					  </clipPath>
+					  <image xlink:href="ardublockly/turtle/icons.png" height="42" width="84" x="120" y="-11" clip-path="url(#fastClipPath)"></image-->
+					  <line class="sliderTrack" x1="10" y1="35" x2="140" y2="35"></line>
+					  <rect style="opacity: 0" x="-10" y="15" width="170" height="40" rx="20" ry="20"></rect>
+					  <path class="sliderKnob" d="m 0,0 l -8,8 v 12 h 16 v -12 z" transform="translate(75,23)"></path>
+					  <circle style="opacity: 0" r="20" cy="35" cx="75"></circle>
+				  </svg>
+			  </div>
             </div>
           </li>
         </ul>
@@ -318,6 +330,8 @@
   <script src="ardublockly/js_libs/FileSaver.min.js"></script>
   <!-- JS Diff -->
   <script src="ardublockly/js_libs/diff.js"></script>
+    <!-- JS Diff -->
+  <script src="ardublockly/js_libs/slider.js"></script>
   <!-- Prettify JS -->
   <script src="ardublockly/prettify/prettify.js"></script>
   <!-- Ardublockly app -->
