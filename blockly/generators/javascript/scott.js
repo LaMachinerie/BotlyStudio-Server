@@ -105,3 +105,8 @@ Blockly.JavaScript['scott_contact'] = function(block){
   return 'none' +
       '(' + ');\n';
 };
+
+Blockly.JavaScript['arduino_functions'] = function(block){
+  return 'none' +
+      '(' + ');\n';
+};
