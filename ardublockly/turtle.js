@@ -311,7 +311,7 @@ Turtle.executeChunk_ = function() {
   // All tasks should be complete now.  Clean up the PID list.
   Turtle.pidList.length = 0;
 	var stepSpeed = Turtle.speedSlider.getValue();
-	Turtle.pause = Turtle.map(stepSpeed, 0, 1, 20, 0);
+	Turtle.pause = Turtle.map(stepSpeed, 0, 1, 20, 0) + 1;
   var go;
   do {
     try {
