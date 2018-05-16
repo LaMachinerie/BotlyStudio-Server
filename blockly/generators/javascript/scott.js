@@ -111,12 +111,12 @@ Blockly.JavaScript['scott_contact'] = function(block){
 
 Blockly.JavaScript['arduino_functions'] = function(block){
   var branch = Blockly.JavaScript.statementToCode(block, 'SETUP_FUNC');
-  var code = branch;
+  var code = '//Setup :\n' + branch;
   
   branch = Blockly.JavaScript.statementToCode(block, 'LOOP_FUNC');
   
   if(branch){
-	code += ' while(true){\n' + branch + '}';
+	code += '//Loop :\nwhile(true){\n' + branch + '}';
   }
   return code + '\n';
 };
