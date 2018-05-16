@@ -15,7 +15,7 @@ Ardublockly.init = function() {
   Ardublockly.changeToolbox();
   Ardublockly.initLanguage();
   Ardublockly.initDifficulty();
-Ardublockly.initOutputLanguage();
+  Ardublockly.initOutputLanguage();
   Turtle.init();
   
   // Inject Blockly into content_blocks and fetch additional blocks
@@ -59,10 +59,6 @@ Ardublockly.bindActionFunctions = function() {
     Ardublockly.loadServerXmlFile('../examples/Scott_dessin.xml');
     $('.button-collapse').sideNav('hide');
   });
-  Ardublockly.bindClick_('menu_example_2', function() {
-    Ardublockly.loadServerXmlFile('../examples/blink.xml');
-    $('.button-collapse').sideNav('hide');
-  });
 
   // Floating buttons
   Ardublockly.bindClick_('button_ide_large', function() {
@@ -78,14 +74,18 @@ Ardublockly.bindActionFunctions = function() {
   Ardublockly.bindClick_('button_toggle_toolbox', Ardublockly.toogleToolbox);
 
   // Settings modal input field listeners
-  Ardublockly.bindClick_('setCompilerLocationButton', function() {
+/*   
+    Ardublockly.bindClick_('setCompilerLocationButton', function() {
     ArdublocklyServer.requestNewCompilerLocation(
         Ardublockly.setCompilerLocationHtml);
-  });
+  }); 
+  */
+  /*
   Ardublockly.bindClick_('setSketchLocationButton', function() {
     ArdublocklyServer.requestNewSketchLocation(
         Ardublockly.setSketchLocationHtml);
   });
+  */
 };
 
 /** Sets the Ardublockly server IDE setting to upload and sends the code. */
