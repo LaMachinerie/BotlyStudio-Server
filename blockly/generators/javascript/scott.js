@@ -106,7 +106,15 @@ Blockly.JavaScript['scott_contact'] = function(block){
       '(' + ');\n';
 };
 
+
+
+
 Blockly.JavaScript['arduino_functions'] = function(block){
-  return 'none' +
-      '(' + ');\n';
+  var branch = Blockly.JavaScript.statementToCode(block, 'SETUP_FUNC' + n);
+  var code = branch;
+  
+  branch = Blockly.JavaScript.statementToCode(block, 'LOOP_FUNC');
+  code += ' while(true){\n' + branch + '}';
+
+  return code + '\n';
 };
