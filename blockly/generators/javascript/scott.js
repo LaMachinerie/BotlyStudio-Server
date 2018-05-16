@@ -114,7 +114,9 @@ Blockly.JavaScript['arduino_functions'] = function(block){
   var code = branch;
   
   branch = Blockly.JavaScript.statementToCode(block, 'LOOP_FUNC');
-  code += ' while(true){\n' + branch + '}';
-
+  
+  if(branch){
+	code += ' while(true){\n' + branch + '}';
+  }
   return code + '\n';
 };
