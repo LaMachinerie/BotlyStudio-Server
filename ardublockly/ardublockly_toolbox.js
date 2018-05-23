@@ -446,6 +446,8 @@ Ardublockly.changeToolbox = function(){
 		// '    <block type="time_millis"></block>' +
 		// '    <block type="time_micros"></block>' +
 		'    <block type="infinite_loop"></block>' +
+		'  </category>' +
+		'  <sep></sep>' +
 		'</xml>';
 	}
 	if(Ardublockly.DIFFICULTY == 3){
