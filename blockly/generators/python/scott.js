@@ -9,26 +9,26 @@ goog.require('Blockly.Python');
 
 
 Blockly.Python['scott_forward'] = function(block) {
-  var forward_distance = block.getFieldValue('VALUE');
-  var code = 'avancer('+ forward_distance +');\n';
+  var value = Blockly.JavaScript.valueToCode(block, 'VALUE', Blockly.JavaScript.ORDER_NONE) || '0';
+  var code = 'avancer('+ value +');\n';
   return code;
 };
 
 Blockly.Python['scott_backward'] = function(block) {
-  var backward_distance = block.getFieldValue('VALUE');
-  var code = 'reculer('+ backward_distance +');\n';
+  var value = Blockly.JavaScript.valueToCode(block, 'VALUE', Blockly.JavaScript.ORDER_NONE) || '0';
+  var code = 'reculer('+ value +');\n';
   return code;
 };
 
 Blockly.Python['scott_right'] = function(block) {
-  var right_angle = block.getFieldValue('VALUE');
-  var code = 'droite('+ right_angle +');\n';
+  var value = Blockly.JavaScript.valueToCode(block, 'VALUE', Blockly.JavaScript.ORDER_NONE) || '0';
+  var code = 'droite('+ value +');\n';
   return code;
 };
 
 Blockly.Python['scott_left'] = function(block) {
-  var left_angle = block.getFieldValue('VALUE');
-  var code = 'gauche('+ left_angle +');\n';
+  var value = Blockly.JavaScript.valueToCode(block, 'VALUE', Blockly.JavaScript.ORDER_NONE) || '0';
+  var code = 'gauche('+ value +');\n';
   return code;
 };
 
