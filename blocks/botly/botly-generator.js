@@ -187,7 +187,7 @@ Blockly.Arduino['botly_crayon'] = function(block) {
       code = 'robot.leverCrayon();\n';
       break;
     case 'Descendre':
-      code = 'robot.descendreCrayon();\n';
+      code = 'robot.poserCrayon();\n';
       break;
   }
   return code;
@@ -279,7 +279,7 @@ Blockly.Python['botly_lever_crayon'] = function(block) {
 };
 
 Blockly.Python['botly_descendre_crayon'] = function(block) {
-  var code = 'descendreCrayon();\n';
+  var code = 'poserCrayon();\n';
   return code;
 };
 
@@ -322,7 +322,7 @@ Blockly.Python['botly_crayon'] = function(block) {
       code = 'leverCrayon();\n';
       break;
     case 'Descendre':
-      code = 'descendreCrayon();\n';
+      code = 'poserCrayon();\n';
       break;
   }
   return code;

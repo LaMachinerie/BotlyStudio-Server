@@ -203,7 +203,7 @@ Blockly.Blocks['botly_lever_crayon'] = {
 Blockly.Blocks['botly_descendre_crayon'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Descendre le crayon");
+        .appendField("Poser le crayon");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -253,7 +253,7 @@ Blockly.Blocks['botly_rotation'] = {
 Blockly.Blocks['botly_crayon'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldDropdown([["Lever","Lever"], ["Descendre","Descendre"]]), "PEN")
+        .appendField(new Blockly.FieldDropdown([["Lever","Lever"], ["Poser","Descendre"]]), "PEN")
         .appendField("le crayon");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
