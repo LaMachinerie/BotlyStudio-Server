@@ -441,3 +441,28 @@ Blockly.JavaScript['botly_contact'] = function(block){
   return 'none' +
       '(' + ');\n';
 };
+
+Blockly.JavaScript['arduino_functions'] = function(block){
+  var branch = Blockly.JavaScript.statementToCode(block, 'SETUP_FUNC');
+  var code = '';
+  if(branch){
+    code += '//Setup :\n' + branch;
+  }
+  
+  branch = Blockly.JavaScript.statementToCode(block, 'LOOP_FUNC');
+  
+  if(branch){
+	code += '//Loop :\nwhile(true){\n' + branch + '}';
+  }
+  return code + '\n';
+};
+
+/**
+ * Code generator for the wait forever (end of program) block
+ * Arduino code: loop { while(true); }
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+ Blockly.JavaScript['infinite_loop'] = function(block) {
+  return 'while(true);\n';
+};
