@@ -136,9 +136,15 @@ Turtle.init = function () {
     BotlyStudio.devTools();
   });
   BotlyStudio.bindClick_('button_ide_left', function () {
-    Turtle.reset();
+    BotlyStudio.discardAllBlocks();
   });
 
+  BotlyStudio.bindClick_('button_plugin_save', function () {
+    Turtle.saveCanvas();
+  });
+  BotlyStudio.bindClick_('button_plugin_clear', function () {
+    Turtle.reset();
+  });
 
   document.getElementById('ide_output_collapsible_header').addEventListener(
     'click', function () {

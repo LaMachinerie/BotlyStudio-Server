@@ -111,6 +111,7 @@ BotlyStudio.bindActionFunctions = function() {
     BotlyStudio.ideButtonLeftAction();
   });
 
+
   BotlyStudio.bindClick_('button_toggle_toolbox', BotlyStudio.toogleToolbox);
   BotlyStudio.bindClick_('setCompilerLocationButton', function () {
     BotlyStudioIPC.setCompilerLocation();

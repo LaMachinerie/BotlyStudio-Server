@@ -76,6 +76,9 @@ body {
 .arduino_teal_light {
   background-color: #62AEB2;
 }
+.arduino_pink {
+  background-color: rgb(241, 126, 174);
+}
 .arduino_blue {
   background-color: #2d5a84;
 }
@@ -83,7 +86,7 @@ body {
   background-color: #f47a42;
 }
 .arduino_yellow {
-  background-color: rgba(255, 204, 51, 1);
+  background-color: #7ac549;
   /* background-color: #FFCC33; */
   /* background-color: #E5AD24; from community logo */
 }
