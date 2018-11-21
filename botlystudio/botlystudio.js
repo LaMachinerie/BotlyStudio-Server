@@ -110,6 +110,9 @@ BotlyStudio.bindActionFunctions = function() {
   BotlyStudio.bindClick_('button_ide_left', function () {
     BotlyStudio.ideButtonLeftAction();
   });
+  BotlyStudio.bindClick_('button_open_ide', function () {
+    BotlyStudio.dowloadCode();
+  });
 
 
   BotlyStudio.bindClick_('button_toggle_toolbox', BotlyStudio.toogleToolbox);
@@ -127,7 +130,6 @@ BotlyStudio.ideButtonMiddleAction =  function(){
 };
 
 BotlyStudio.ideButtonLeftAction = function(){
-
 };
 
 /** Sets the BotlyStudio server IDE setting to upload and sends the code. */
@@ -152,6 +154,7 @@ BotlyStudio.ideSendOpen = function () {
 };
 
 
+
 /**
  * Send the Arduino Code to the BotlyStudioIPC to process.
  * Shows a loader around the button, blocking it (unblocked upon received
@@ -161,6 +164,12 @@ BotlyStudio.sendCode = function (flag) {
   BotlyStudio.largeIdeButtonSpinner(true);
   BotlyStudioIPC.sendSketchToServer(BotlyStudio.generateArduino(), flag);
 };
+
+BotlyStudio.dowloadCode = function(){
+  BotlyStudio.saveTextFileAs(
+    document.getElementById('sketch_name').value + '.ino',
+    BotlyStudio.generateArduino());
+}
 
 
 /** Initialises the IDE buttons with the default option from the server. */
