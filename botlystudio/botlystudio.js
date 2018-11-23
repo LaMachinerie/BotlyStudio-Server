@@ -94,11 +94,12 @@ BotlyStudio.bindActionFunctions = function() {
     BotlyStudio.openSettings();
     $('.button-collapse').sideNav('hide');
   });
+  /*
   BotlyStudio.bindClick_('menu_example_1', function() {
     BotlyStudio.loadServerXmlFile('../examples/Scott_dessin.xml');
     $('.button-collapse').sideNav('hide');
   });
-
+	*/
 
 
   BotlyStudio.bindClick_('button_ide_large', function () {
