@@ -41,7 +41,7 @@ BotlyStudio.getRobotRealName = function(i){
 
 
 
-BotlyStudio.ROBOT = 2;
+BotlyStudio.ROBOT = 1;
 
 
 BotlyStudio.populateRobotMenu = function() {
