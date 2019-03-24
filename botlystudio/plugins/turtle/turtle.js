@@ -953,7 +953,7 @@ Turtle.execute = function() {
   Blockly.selected && Blockly.selected.unselect();
   var code = BotlyStudio.generateJavaScript();
   Turtle.interpreter = new Interpreter(code, Turtle.initInterpreter);
-  Turtle.pidList.push(setTimeout(Turtle.executeChunk_, 100));
+  Turtle.pidList.push(setTimeout(Turtle.executeChunk_, 10));
 };
 
 
@@ -998,7 +998,7 @@ Turtle.executeChunk_ = function() {
       go = false;
       if(Turtle.fastMode){
         Turtle.pidList.push(
-          setTimeout(Turtle.executeChunk_, 0.01));
+          setTimeout(Turtle.executeChunk_, 0));
       }else{
         Turtle.pidList.push(
           setTimeout(Turtle.executeChunk_, Turtle.pause));
