@@ -106,6 +106,7 @@ Turtle.pause = 10;
 Turtle.background = null;
 Turtle.visible = true;
 Turtle.penDownValue = true;
+Turtle.fastMode = false;
 
 Turtle.speedSlider = null;
 //Turtle.zoomSlider = null;
@@ -130,7 +131,7 @@ Turtle.init = function () {
   Turtle.ctx = Turtle.canvas.getContext('2d');
 
   BotlyStudio.bindClick_('button_ide_large', function () {
-    Turtle.execute();
+    Turtle.executeNormal();
   });
 
   BotlyStudio.bindClick_('button_fast_forward', function () {
@@ -718,7 +719,7 @@ Turtle.setBackGround = function (path) {
   }
 };
 
-
+/*
 Turtle.execute = function () {
   if (!('Interpreter' in window)) {
     // Interpreter lazy loads and hasn't arrived yet.  Try again later.
@@ -730,19 +731,8 @@ Turtle.execute = function () {
   Turtle.pidList.push(setTimeout(Turtle.executeChunk_, 100));
   Turtle.reset();
 }
+*/
 
-
-Turtle.executeFast = function(){
-  if (!('Interpreter' in window)) {
-    // Interpreter lazy loads and hasn't arrived yet.  Try again later.
-    setTimeout(Turtle.execute, 250);
-    return;
-  }
-  var code = BotlyStudio.generateJavaScript();
-  Turtle.interpreter = new Interpreter(code, Turtle.initInterpreter);
-  Turtle.pidList.push(setTimeout(Turtle.executeChunkFast_, 100));
-  Turtle.reset();
-}
 
 /**
  * Reset the turtle to the start position, clear the display, and kill any
@@ -843,7 +833,7 @@ Turtle.runButtonClick = function(e) {
     return;
   }
   */
-  Turtle.execute();
+  Turtle.executeNormal();
 };
 
 /**
@@ -966,6 +956,18 @@ Turtle.execute = function() {
   Turtle.pidList.push(setTimeout(Turtle.executeChunk_, 100));
 };
 
+
+Turtle.executeFast = function(){
+  Turtle.fastMode = true;
+  Turtle.execute();
+}
+
+Turtle.executeNormal = function(){
+  Turtle.fastMode = false;
+  Turtle.execute();
+}
+
+
 Turtle.map = function(x, in_min, in_max, out_min, out_max)
 {
   return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
@@ -980,7 +982,8 @@ Turtle.executeChunk_ = function() {
   // All tasks should be complete now.  Clean up the PID list.
   Turtle.pidList.length = 0;
 	var stepSpeed = Turtle.speedSlider.getValue();
-	Turtle.pause = Turtle.map(stepSpeed, 0, 1, 20, 0) + 1;
+  Turtle.pause = Turtle.map(stepSpeed, 0, 1, 20, 0) + 1;
+  if(Turtle.fastMode)
   var go;
   do {
     try {
@@ -993,40 +996,13 @@ Turtle.executeChunk_ = function() {
     if (go && Turtle.pause) {
       // The last executed command requested a pause.
       go = false;
-      Turtle.pidList.push(
+      if(Turtle.fastMode){
+        Turtle.pidList.push(
+          Turtle.executeChunk_, Turtle.pause);
+      }else{
+        Turtle.pidList.push(
           setTimeout(Turtle.executeChunk_, Turtle.pause));
-    }
-  } while (go);
-  // Wrap up if complete.
-  if (!Turtle.pause) {
-    BotlyStudio.workspace.highlightBlock(null);
-    // Image complete; allow the user to submit this image to Reddit.
-    Turtle.canSubmit = true;
-  }
-};
-
-/**
- * Execute a bite-sized chunk of the user's code.
- * @private
- */
-Turtle.executeChunkFast_ = function() {
-  // All tasks should be complete now.  Clean up the PID list.
-  Turtle.pidList.length = 0;
-	Turtle.pause = 0;
-  var go;
-  do {
-    try {
-      go = Turtle.interpreter.step();
-    } catch (e) {
-      // User error, terminate in shame.
-      alert(e);
-      go = false;
-    }
-    if (go && Turtle.pause) {
-      // The last executed command requested a pause.
-      go = false;
-      Turtle.pidList.push(
-          setTimeout(Turtle.executeChunk_, Turtle.pause));
+      }
     }
   } while (go);
   // Wrap up if complete.
