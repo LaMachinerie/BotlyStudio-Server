@@ -998,7 +998,7 @@ Turtle.executeChunk_ = function() {
       go = false;
       if(Turtle.fastMode){
         Turtle.pidList.push(
-          Turtle.executeChunk_);
+          setTimeout(Turtle.executeChunk_, 10));
       }else{
         Turtle.pidList.push(
           setTimeout(Turtle.executeChunk_, Turtle.pause));
