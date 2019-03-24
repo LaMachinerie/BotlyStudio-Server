@@ -992,16 +992,11 @@ Turtle.executeChunk_ = function() {
       alert(e);
       go = false;
     }
-    if (go && Turtle.pause) {
+    if (go && Turtle.pause && !Turtle.fastMode) {
       // The last executed command requested a pause.
       go = false;
-      if(Turtle.fastMode){
-        Turtle.pidList.push(
-          setTimeout(Turtle.executeChunk_, 0));
-      }else{
-        Turtle.pidList.push(
+      pidList.push(
           setTimeout(Turtle.executeChunk_, Turtle.pause));
-      }
     }
   } while (go);
   // Wrap up if complete.
