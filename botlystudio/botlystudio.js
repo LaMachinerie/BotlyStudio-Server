@@ -115,6 +115,7 @@ BotlyStudio.bindActionFunctions = function() {
     BotlyStudio.dowloadCode();
   });
 
+  
 
   BotlyStudio.bindClick_('button_toggle_toolbox', BotlyStudio.toogleToolbox);
   BotlyStudio.bindClick_('setCompilerLocationButton', function () {
