@@ -78,29 +78,16 @@ Blockly.Arduino.addInclude = function(a, b) { void 0 === Blockly.Arduino.include
 Blockly.Arduino.addDeclaration = function(a, b) { void 0 === Blockly.Arduino.definitions_[a] && (Blockly.Arduino.definitions_[a] = b) };
 Blockly.Arduino.addVariable = function(a, b, c) { var d = !1; if (c || void 0 === Blockly.Arduino.variables_[a]) Blockly.Arduino.variables_[a] = b, d = !0; return d };
 Blockly.Arduino.addSetup = function(a, b, c) { var d = !1; if (c || void 0 === Blockly.Arduino.setups_[a]) Blockly.Arduino.setups_[a] = b, d = !0; return d };
-Blockly.Arduino.addFunction = function(a, b) {
-    if (void 0 === Blockly.Arduino.codeFunctions_[a]) {
-        var c = Blockly.Arduino.variableDB_.getDistinctName(a, Blockly.Generator.NAME_TYPE);
+Blockly.Arduino.addFunction = function(a, b) { if (void 0 === Blockly.Arduino.codeFunctions_[a]) { var c = Blockly.Arduino.variableDB_.getDistinctName(a, Blockly.Generator.NAME_TYPE);
         Blockly.Arduino.codeFunctions_[a] = b.replace(Blockly.Arduino.DEF_FUNC_NAME, c);
-        Blockly.Arduino.functionNames_[a] = c
-    }
-    return Blockly.Arduino.functionNames_[a]
-};
+        Blockly.Arduino.functionNames_[a] = c } return Blockly.Arduino.functionNames_[a] };
 Blockly.Arduino.reservePin = function(a, b, c, d) { void 0 !== Blockly.Arduino.pins_[b] ? Blockly.Arduino.pins_[b] != c ? a.setWarningText(Blockly.Msg.ARD_PIN_WARN1.replace("%1", b).replace("%2", d).replace("%3", c).replace("%4", Blockly.Arduino.pins_[b]), d) : a.setWarningText(null, d) : (Blockly.Arduino.pins_[b] = c, a.setWarningText(null, d)) };
 Blockly.Arduino.scrubNakedValue = function(a) { return a + ";\n" };
 Blockly.Arduino.quote_ = function(a) { a = a.replace(/\\/g, "\\\\").replace(/\n/g, "\\\n").replace(/\$/g, "\\$").replace(/'/g, "\\'"); return '"' + a + '"' };
-Blockly.Arduino.scrub_ = function(a, b) {
-    if (null === b) return "";
-    var c = "";
-    if (!a.outputConnection || !a.outputConnection.targetConnection) {
-        var d = a.getCommentText();
-        d && (c += this.prefixLines(d, "// ") + "\n");
-        for (var e = 0; e < a.inputList.length; e++) a.inputList[e].type == Blockly.INPUT_VALUE && (d = a.inputList[e].connection.targetBlock()) && (d = this.allNestedComments(d)) && (c += this.prefixLines(d, "// "))
-    }
+Blockly.Arduino.scrub_ = function(a, b) { if (null === b) return ""; var c = ""; if (!a.outputConnection || !a.outputConnection.targetConnection) { var d = a.getCommentText();
+        d && (c += this.prefixLines(d, "// ") + "\n"); for (var e = 0; e < a.inputList.length; e++) a.inputList[e].type == Blockly.INPUT_VALUE && (d = a.inputList[e].connection.targetBlock()) && (d = this.allNestedComments(d)) && (c += this.prefixLines(d, "// ")) }
     e = a.nextConnection && a.nextConnection.targetBlock();
-    e = this.blockToCode(e);
-    return c + b + e
-};
+    e = this.blockToCode(e); return c + b + e };
 Blockly.Arduino.getArduinoType_ = function(a) {
     switch (a.typeId) {
         case Blockly.Types.SHORT_NUMBER.typeId:
@@ -151,12 +138,10 @@ Blockly.Arduino.Boards.profiles.uno = {
     serial: [
         ["serial", "Serial"]
     ],
-    serialPins: {
-        Serial: [
+    serialPins: { Serial: [
             ["RX", "0"],
             ["TX", "1"]
-        ]
-    },
+        ] },
     serialSpeed: [
         ["300", "300"],
         ["600", "600"],
@@ -177,13 +162,11 @@ Blockly.Arduino.Boards.profiles.uno = {
     spi: [
         ["SPI", "SPI"]
     ],
-    spiPins: {
-        SPI: [
+    spiPins: { SPI: [
             ["MOSI", "11"],
             ["MISO", "12"],
             ["SCK", "13"]
-        ]
-    },
+        ] },
     spiClockDivide: [
         ["2 (8MHz)", "SPI_CLOCK_DIV2"],
         ["4 (4MHz)", "SPI_CLOCK_DIV4"],
@@ -196,12 +179,10 @@ Blockly.Arduino.Boards.profiles.uno = {
     i2c: [
         ["I2C", "Wire"]
     ],
-    i2cPins: {
-        Wire: [
+    i2cPins: { Wire: [
             ["SDA", "A4"],
             ["SCL", "A5"]
-        ]
-    },
+        ] },
     i2cSpeed: [
         ["100kHz", "100000L"],
         ["400kHz", "400000L"]
@@ -288,23 +269,19 @@ Blockly.Arduino.Boards.profiles.mega = {
     spi: [
         ["SPI", "SPI"]
     ],
-    spiPins: {
-        SPI: [
+    spiPins: { SPI: [
             ["MOSI", "51"],
             ["MISO", "50"],
             ["SCK", "52"]
-        ]
-    },
+        ] },
     spiClockDivide: Blockly.Arduino.Boards.profiles.uno.spiClockDivide,
     i2c: [
         ["I2C", "Wire"]
     ],
-    i2cPins: {
-        Wire: [
+    i2cPins: { Wire: [
             ["SDA", "20"],
             ["SCL", "21"]
-        ]
-    },
+        ] },
     i2cSpeed: [
         ["100kHz", "100000L"],
         ["400kHz", "400000L"]
@@ -343,23 +320,19 @@ Blockly.Arduino.Boards.profiles.leonardo = {
     spi: [
         ["SPI", "SPI"]
     ],
-    spiPins: {
-        SPI: [
+    spiPins: { SPI: [
             ["MOSI", "ICSP-4"],
             ["MISO", "ICSP-1"],
             ["SCK", "ICSP-3"]
-        ]
-    },
+        ] },
     spiClockDivide: Blockly.Arduino.Boards.profiles.uno.spiClockDivide,
     i2c: [
         ["I2C", "Wire"]
     ],
-    i2cPins: {
-        Wire: [
+    i2cPins: { Wire: [
             ["SDA", "2"],
             ["SCL", "3"]
-        ]
-    },
+        ] },
     i2cSpeed: Blockly.Arduino.Boards.profiles.uno.i2cSpeed,
     builtinLed: Blockly.Arduino.Boards.profiles.uno.builtinLed,
     interrupt: [
@@ -425,12 +398,10 @@ Blockly.Arduino.Boards.profiles.esp8266_huzzah = {
     serial: [
         ["serial", "Serial"]
     ],
-    serialPins: {
-        Serial: [
+    serialPins: { Serial: [
             ["RX", "RX"],
             ["TX", "TX"]
-        ]
-    },
+        ] },
     serialSpeed: Blockly.Arduino.Boards.profiles.uno.serial,
     spi: [
         ["SPI", "SPI"]
@@ -448,12 +419,10 @@ Blockly.Arduino.Boards.profiles.esp8266_huzzah = {
     i2c: [
         ["I2C", "Wire"]
     ],
-    i2cPins: {
-        Wire: [
+    i2cPins: { Wire: [
             ["SDA", "4"],
             ["SCL", "5"]
-        ]
-    },
+        ] },
     i2cSpeed: Blockly.Arduino.Boards.profiles.uno.i2cSpeed,
     builtinLed: [
         ["BUILTIN_1", "0"]
@@ -492,33 +461,27 @@ Blockly.Arduino.Boards.profiles.esp8266_wemos_d1 = {
     serial: [
         ["serial", "Serial"]
     ],
-    serialPins: {
-        Serial: [
+    serialPins: { Serial: [
             ["RX", "RX"],
             ["TX", "TX"]
-        ]
-    },
+        ] },
     serialSpeed: Blockly.Arduino.Boards.profiles.uno.serialSpeed,
     spi: [
         ["SPI", "SPI"]
     ],
-    spiPins: {
-        SPI: [
+    spiPins: { SPI: [
             ["MOSI", "D7"],
             ["MISO", "D6"],
             ["SCK", "D5"]
-        ]
-    },
+        ] },
     spiClockDivide: Blockly.Arduino.Boards.profiles.uno.spiClockDivide,
     i2c: [
         ["I2C", "Wire"]
     ],
-    i2cPins: {
-        Wire: [
+    i2cPins: { Wire: [
             ["SDA", "D2"],
             ["SCL", "D1"]
-        ]
-    },
+        ] },
     i2cSpeed: Blockly.Arduino.Boards.profiles.uno.i2cSpeed,
     builtinLed: [
         ["BUILTIN_1", "D4"]
@@ -535,80 +498,49 @@ Blockly.Arduino.Boards.profiles.esp8266_wemos_d1 = {
     ]
 };
 Blockly.Arduino.Boards.selected = Blockly.Arduino.Boards.profiles.uno;
-Blockly.Arduino.Boards.changeBoard = function(a, b) {
-    if (void 0 === Blockly.Arduino.Boards.profiles[b]) console.log("Tried to set non-existing Arduino board: " + b);
-    else {
-        Blockly.Arduino.Boards.selected = Blockly.Arduino.Boards.profiles[b];
-        for (var c = a.getAllBlocks(), d = 0; d < c.length; d++) {
-            var e = c[d].updateFields;
-            e && e.call(c[d])
-        }
-    }
-};
-Blockly.Arduino.Boards.refreshBlockFieldDropdown = function(a, b, c) {
-    var d = a.getField(b);
+Blockly.Arduino.Boards.changeBoard = function(a, b) { if (void 0 === Blockly.Arduino.Boards.profiles[b]) console.log("Tried to set non-existing Arduino board: " + b);
+    else { Blockly.Arduino.Boards.selected = Blockly.Arduino.Boards.profiles[b]; for (var c = a.getAllBlocks(), d = 0; d < c.length; d++) { var e = c[d].updateFields;
+            e && e.call(c[d]) } } };
+Blockly.Arduino.Boards.refreshBlockFieldDropdown = function(a, b, c) { var d = a.getField(b);
     b = d.getValue();
     c = Blockly.Arduino.Boards.selected[c];
-    d.menuGenerator_ = c;
-    for (var d = !1, e = 0; e < c.length; e++) b == c[e][1] && (d = !0);
-    d ? a.setWarningText(null, "bPin") : a.setWarningText("The old pin value " + b + " is no longer available.", "bPin")
-};
+    d.menuGenerator_ = c; for (var d = !1, e = 0; e < c.length; e++) b == c[e][1] && (d = !0);
+    d ? a.setWarningText(null, "bPin") : a.setWarningText("The old pin value " + b + " is no longer available.", "bPin") };
 Blockly.Arduino.colour = {};
 Blockly.Arduino.colour_picker = Blockly.Arduino.noGeneratorCodeInline;
 Blockly.Arduino.colour_random = Blockly.Arduino.noGeneratorCodeInline;
 Blockly.Arduino.colour_rgb = Blockly.Arduino.noGeneratorCodeInline;
 Blockly.Arduino.colour_blend = Blockly.Arduino.noGeneratorCodeInline;
 Blockly.Arduino.IO = {};
-Blockly.Arduino.io_digitalwrite = function(a) {
-    var b = a.getFieldValue("PIN"),
+Blockly.Arduino.io_digitalwrite = function(a) { var b = a.getFieldValue("PIN"),
         c = Blockly.Arduino.valueToCode(a, "STATE", Blockly.Arduino.ORDER_ATOMIC) || "LOW";
     Blockly.Arduino.reservePin(a, b, Blockly.Arduino.PinTypes.OUTPUT, "Digital Write");
-    Blockly.Arduino.addSetup("io_" + b, "pinMode(" + b + ", OUTPUT);", !1);
-    return "digitalWrite(" + b + ", " + c + ");\n"
-};
-Blockly.Arduino.io_digitalread = function(a) {
-    var b = a.getFieldValue("PIN");
+    Blockly.Arduino.addSetup("io_" + b, "pinMode(" + b + ", OUTPUT);", !1); return "digitalWrite(" + b + ", " + c + ");\n" };
+Blockly.Arduino.io_digitalread = function(a) { var b = a.getFieldValue("PIN");
     Blockly.Arduino.reservePin(a, b, Blockly.Arduino.PinTypes.INPUT, "Digital Read");
-    Blockly.Arduino.addSetup("io_" + b, "pinMode(" + b + ", INPUT_PULLUP);", !1);
-    return ["digitalRead(" + b + ")", Blockly.Arduino.ORDER_ATOMIC]
-};
-Blockly.Arduino.io_builtin_led = function(a) {
-    var b = a.getFieldValue("BUILT_IN_LED"),
+    Blockly.Arduino.addSetup("io_" + b, "pinMode(" + b + ", INPUT_PULLUP);", !1); return ["digitalRead(" + b + ")", Blockly.Arduino.ORDER_ATOMIC] };
+Blockly.Arduino.io_builtin_led = function(a) { var b = a.getFieldValue("BUILT_IN_LED"),
         c = Blockly.Arduino.valueToCode(a, "STATE", Blockly.Arduino.ORDER_ATOMIC) || "LOW";
     Blockly.Arduino.reservePin(a, b, Blockly.Arduino.PinTypes.OUTPUT, "Set LED");
-    Blockly.Arduino.addSetup("io_" + b, "pinMode(" + b + ", OUTPUT);", !1);
-    return "digitalWrite(" + b + ", " + c + ");\n"
-};
-Blockly.Arduino.io_analogwrite = function(a) {
-    var b = a.getFieldValue("PIN"),
+    Blockly.Arduino.addSetup("io_" + b, "pinMode(" + b + ", OUTPUT);", !1); return "digitalWrite(" + b + ", " + c + ");\n" };
+Blockly.Arduino.io_analogwrite = function(a) { var b = a.getFieldValue("PIN"),
         c = Blockly.Arduino.valueToCode(a, "NUM", Blockly.Arduino.ORDER_ATOMIC) || "0";
     Blockly.Arduino.reservePin(a, b, Blockly.Arduino.PinTypes.OUTPUT, "Analogue Write");
     Blockly.Arduino.addSetup("io_" + b, "pinMode(" + b + ", OUTPUT);", !1);
-    0 > c || 255 < c ? a.setWarningText("The analogue value set must be between 0 and 255", "pwm_value") : a.setWarningText(null, "pwm_value");
-    return "analogWrite(" + b + ", " + c + ");\n"
-};
-Blockly.Arduino.io_analogread = function(a) {
-    var b = a.getFieldValue("PIN");
+    0 > c || 255 < c ? a.setWarningText("The analogue value set must be between 0 and 255", "pwm_value") : a.setWarningText(null, "pwm_value"); return "analogWrite(" + b + ", " + c + ");\n" };
+Blockly.Arduino.io_analogread = function(a) { var b = a.getFieldValue("PIN");
     Blockly.Arduino.reservePin(a, b, Blockly.Arduino.PinTypes.INPUT, "Analogue Read");
-    Blockly.Arduino.addSetup("io_" + b, "pinMode(" + b + ", INPUT);", !1);
-    return ["analogRead(" + b + ")", Blockly.Arduino.ORDER_ATOMIC]
-};
+    Blockly.Arduino.addSetup("io_" + b, "pinMode(" + b + ", INPUT);", !1); return ["analogRead(" + b + ")", Blockly.Arduino.ORDER_ATOMIC] };
 Blockly.Arduino.io_highlow = function(a) { return [a.getFieldValue("STATE"), Blockly.Arduino.ORDER_ATOMIC] };
-Blockly.Arduino.io_pulsein = function(a) {
-    var b = a.getFieldValue("PULSEPIN"),
+Blockly.Arduino.io_pulsein = function(a) { var b = a.getFieldValue("PULSEPIN"),
         c = Blockly.Arduino.valueToCode(a, "PULSETYPE", Blockly.Arduino.ORDER_ATOMIC);
     Blockly.Arduino.reservePin(a, b, Blockly.Arduino.PinTypes.INPUT, "Pulse Pin");
-    Blockly.Arduino.addSetup("io_" + b, "pinMode(" + b + ", INPUT);\n", !1);
-    return ["pulseIn(" + b + ", " + c + ")", Blockly.Arduino.ORDER_ATOMIC]
-};
-Blockly.Arduino.io_pulsetimeout = function(a) {
-    var b = a.getFieldValue("PULSEPIN"),
+    Blockly.Arduino.addSetup("io_" + b, "pinMode(" + b + ", INPUT);\n", !1); return ["pulseIn(" + b + ", " + c + ")", Blockly.Arduino.ORDER_ATOMIC] };
+Blockly.Arduino.io_pulsetimeout = function(a) { var b = a.getFieldValue("PULSEPIN"),
         c = Blockly.Arduino.valueToCode(a, "PULSETYPE", Blockly.Arduino.ORDER_ATOMIC),
         d = Blockly.Arduino.valueToCode(a, "TIMEOUT", Blockly.Arduino.ORDER_ATOMIC);
     Blockly.Arduino.reservePin(a, b, Blockly.Arduino.PinTypes.INPUT, "Pulse Pin");
-    Blockly.Arduino.addSetup("io_" + b, "pinMode(" + b + ", INPUT);\n", !1);
-    return ["pulseIn(" + b + ", " + c + ", " + d + ")", Blockly.Arduino.ORDER_ATOMIC]
-};
+    Blockly.Arduino.addSetup("io_" + b, "pinMode(" + b + ", INPUT);\n", !1); return ["pulseIn(" + b + ", " + c + ", " + d + ")", Blockly.Arduino.ORDER_ATOMIC] };
 Blockly.Arduino.lists = {};
 Blockly.Arduino.lists_create_empty = Blockly.Arduino.noGeneratorCodeInline;
 Blockly.Arduino.lists_create_with = Blockly.Arduino.noGeneratorCodeInline;
@@ -619,47 +551,29 @@ Blockly.Arduino.lists_indexOf = Blockly.Arduino.noGeneratorCodeInline;
 Blockly.Arduino.lists_getIndex = Blockly.Arduino.noGeneratorCodeInline;
 Blockly.Arduino.lists_setIndex = Blockly.Arduino.noGeneratorCodeLine;
 Blockly.Arduino.logic = {};
-Blockly.Arduino.controls_if = function(a) {
-    for (var b = 0, c = Blockly.Arduino.valueToCode(a, "IF" + b, Blockly.Arduino.ORDER_NONE) || "false", d = Blockly.Arduino.statementToCode(a, "DO" + b), e = "if (" + c + ") {\n" + d + "}", b = 1; b <= a.elseifCount_; b++) c = Blockly.Arduino.valueToCode(a, "IF" + b, Blockly.Arduino.ORDER_NONE) || "false", d = Blockly.Arduino.statementToCode(a, "DO" + b), e += " else if (" + c + ") {\n" + d + "}";
-    a.elseCount_ && (d = Blockly.Arduino.statementToCode(a, "ELSE"), e += " else {\n" + d + "}");
-    return e + "\n"
-};
-Blockly.Arduino.logic_compare = function(a) {
-    var b = { EQ: "==", NEQ: "!=", LT: "<", LTE: "<=", GT: ">", GTE: ">=" }[a.getFieldValue("OP")],
+Blockly.Arduino.controls_if = function(a) { for (var b = 0, c = Blockly.Arduino.valueToCode(a, "IF" + b, Blockly.Arduino.ORDER_NONE) || "false", d = Blockly.Arduino.statementToCode(a, "DO" + b), e = "if (" + c + ") {\n" + d + "}", b = 1; b <= a.elseifCount_; b++) c = Blockly.Arduino.valueToCode(a, "IF" + b, Blockly.Arduino.ORDER_NONE) || "false", d = Blockly.Arduino.statementToCode(a, "DO" + b), e += " else if (" + c + ") {\n" + d + "}";
+    a.elseCount_ && (d = Blockly.Arduino.statementToCode(a, "ELSE"), e += " else {\n" + d + "}"); return e + "\n" };
+Blockly.Arduino.logic_compare = function(a) { var b = { EQ: "==", NEQ: "!=", LT: "<", LTE: "<=", GT: ">", GTE: ">=" }[a.getFieldValue("OP")],
         c = "==" == b || "!=" == b ? Blockly.Arduino.ORDER_EQUALITY : Blockly.Arduino.ORDER_RELATIONAL,
         d = Blockly.Arduino.valueToCode(a, "A", c) || "0";
-    a = Blockly.Arduino.valueToCode(a, "B", c) || "0";
-    return [d + " " + b + " " + a, c]
-};
-Blockly.Arduino.logic_operation = function(a) {
-    var b = "AND" == a.getFieldValue("OP") ? "&&" : "||",
+    a = Blockly.Arduino.valueToCode(a, "B", c) || "0"; return [d + " " + b + " " + a, c] };
+Blockly.Arduino.logic_operation = function(a) { var b = "AND" == a.getFieldValue("OP") ? "&&" : "||",
         c = "&&" == b ? Blockly.Arduino.ORDER_LOGICAL_AND : Blockly.Arduino.ORDER_LOGICAL_OR,
         d = Blockly.Arduino.valueToCode(a, "A", c) || "false";
-    a = Blockly.Arduino.valueToCode(a, "B", c) || "false";
-    if (d || a) {
-        var e = "&&" == b ? "true" : "false";
+    a = Blockly.Arduino.valueToCode(a, "B", c) || "false"; if (d || a) { var e = "&&" == b ? "true" : "false";
         d || (d = e);
-        a || (a = e)
-    } else a = d = "false";
-    return [d + " " + b + " " + a, c]
-};
+        a || (a = e) } else a = d = "false"; return [d + " " + b + " " + a, c] };
 Blockly.Arduino.logic_negate = function(a) { var b = Blockly.Arduino.ORDER_UNARY_PREFIX; return ["!" + (Blockly.Arduino.valueToCode(a, "BOOL", b) || "false"), b] };
 Blockly.Arduino.logic_boolean = function(a) { return ["TRUE" == a.getFieldValue("BOOL") ? "true" : "false", Blockly.Arduino.ORDER_ATOMIC] };
 Blockly.Arduino.logic_null = function(a) { return ["NULL", Blockly.Arduino.ORDER_ATOMIC] };
-Blockly.Arduino.logic_ternary = function(a) {
-    var b = Blockly.Arduino.valueToCode(a, "IF", Blockly.Arduino.ORDER_CONDITIONAL) || "false",
+Blockly.Arduino.logic_ternary = function(a) { var b = Blockly.Arduino.valueToCode(a, "IF", Blockly.Arduino.ORDER_CONDITIONAL) || "false",
         c = Blockly.Arduino.valueToCode(a, "THEN", Blockly.Arduino.ORDER_CONDITIONAL) || "null";
-    a = Blockly.Arduino.valueToCode(a, "ELSE", Blockly.Arduino.ORDER_CONDITIONAL) || "null";
-    return [b + " ? " + c + " : " + a, Blockly.Arduino.ORDER_CONDITIONAL]
-};
+    a = Blockly.Arduino.valueToCode(a, "ELSE", Blockly.Arduino.ORDER_CONDITIONAL) || "null"; return [b + " ? " + c + " : " + a, Blockly.Arduino.ORDER_CONDITIONAL] };
 Blockly.Arduino.loops = {};
-Blockly.Arduino.controls_repeat = function(a) {
-    var b = Number(a.getFieldValue("TIMES")),
+Blockly.Arduino.controls_repeat = function(a) { var b = Number(a.getFieldValue("TIMES")),
         c = Blockly.Arduino.statementToCode(a, "DO"),
         c = Blockly.Arduino.addLoopTrap(c, a.id);
-    a = Blockly.Arduino.variableDB_.getDistinctName("count", Blockly.Variables.NAME_TYPE);
-    return "for (int " + a + " = 0; " + a + " < " + b + "; " + a + "++) {\n" + c + "}\n"
-};
+    a = Blockly.Arduino.variableDB_.getDistinctName("count", Blockly.Variables.NAME_TYPE); return "for (int " + a + " = 0; " + a + " < " + b + "; " + a + "++) {\n" + c + "}\n" };
 Blockly.Arduino.controls_repeat_ext = function(a) {
     var b = Blockly.Arduino.valueToCode(a, "TIMES", Blockly.Arduino.ORDER_ADDITIVE) || "0",
         c = Blockly.Arduino.statementToCode(a, "DO"),
@@ -671,14 +585,11 @@ Blockly.Arduino.controls_repeat_ext = function(a) {
     return a + ("for (int " + d + " = 0; " + d + " < " +
         e + "; " + d + "++) {\n" + c + "}\n")
 };
-Blockly.Arduino.controls_whileUntil = function(a) {
-    var b = "UNTIL" == a.getFieldValue("MODE"),
+Blockly.Arduino.controls_whileUntil = function(a) { var b = "UNTIL" == a.getFieldValue("MODE"),
         c = Blockly.Arduino.valueToCode(a, "BOOL", b ? Blockly.Arduino.ORDER_LOGICAL_OR : Blockly.Arduino.ORDER_NONE) || "false",
         d = Blockly.Arduino.statementToCode(a, "DO"),
         d = Blockly.Arduino.addLoopTrap(d, a.id);
-    b && (c.match(/^\w+$/) || (c = "(" + c + ")"), c = "!" + c);
-    return "while (" + c + ") {\n" + d + "}\n"
-};
+    b && (c.match(/^\w+$/) || (c = "(" + c + ")"), c = "!" + c); return "while (" + c + ") {\n" + d + "}\n" };
 Blockly.Arduino.controls_for = function(a) {
     var b = Blockly.Arduino.variableDB_.getName(a.getFieldValue("VAR"), Blockly.Variables.NAME_TYPE),
         c = Blockly.Arduino.valueToCode(a, "FROM", Blockly.Arduino.ORDER_ASSIGNMENT) || "0",
@@ -697,35 +608,22 @@ Blockly.Arduino.controls_for = function(a) {
     return a
 };
 Blockly.Arduino.controls_forEach = Blockly.Arduino.noGeneratorCodeLine;
-Blockly.Arduino.controls_flow_statements = function(a) {
-    switch (a.getFieldValue("FLOW")) {
+Blockly.Arduino.controls_flow_statements = function(a) { switch (a.getFieldValue("FLOW")) {
         case "BREAK":
             return "break;\n";
         case "CONTINUE":
-            return "continue;\n"
-    }
-    throw "Unknown flow statement.";
-};
+            return "continue;\n" } throw "Unknown flow statement."; };
 Blockly.Arduino.map = {};
-Blockly.Arduino.base_map = function(a) {
-    var b = Blockly.Arduino.valueToCode(a, "NUM", Blockly.Arduino.ORDER_NONE) || "0";
-    a = Blockly.Arduino.valueToCode(a, "DMAX", Blockly.Arduino.ORDER_ATOMIC) || "0";
-    return ["map(" + b + ", 0, 1024, 0, " + a + ")", Blockly.Arduino.ORDER_NONE]
-};
+Blockly.Arduino.base_map = function(a) { var b = Blockly.Arduino.valueToCode(a, "NUM", Blockly.Arduino.ORDER_NONE) || "0";
+    a = Blockly.Arduino.valueToCode(a, "DMAX", Blockly.Arduino.ORDER_ATOMIC) || "0"; return ["map(" + b + ", 0, 1024, 0, " + a + ")", Blockly.Arduino.ORDER_NONE] };
 Blockly.Arduino.math = {};
-Blockly.Arduino.math_number = function(a) {
-    a = parseFloat(a.getFieldValue("NUM"));
-    Infinity == a ? a = "INFINITY" : -Infinity == a && (a = "-INFINITY");
-    return [a, Blockly.Arduino.ORDER_ATOMIC]
-};
-Blockly.Arduino.math_arithmetic = function(a) {
-    var b = { ADD: [" + ", Blockly.Arduino.ORDER_ADDITIVE], MINUS: [" - ", Blockly.Arduino.ORDER_ADDITIVE], MULTIPLY: [" * ", Blockly.Arduino.ORDER_MULTIPLICATIVE], DIVIDE: [" / ", Blockly.Arduino.ORDER_MULTIPLICATIVE], POWER: [null, Blockly.Arduino.ORDER_NONE] }[a.getFieldValue("OP")],
+Blockly.Arduino.math_number = function(a) { a = parseFloat(a.getFieldValue("NUM"));
+    Infinity == a ? a = "INFINITY" : -Infinity == a && (a = "-INFINITY"); return [a, Blockly.Arduino.ORDER_ATOMIC] };
+Blockly.Arduino.math_arithmetic = function(a) { var b = { ADD: [" + ", Blockly.Arduino.ORDER_ADDITIVE], MINUS: [" - ", Blockly.Arduino.ORDER_ADDITIVE], MULTIPLY: [" * ", Blockly.Arduino.ORDER_MULTIPLICATIVE], DIVIDE: [" / ", Blockly.Arduino.ORDER_MULTIPLICATIVE], POWER: [null, Blockly.Arduino.ORDER_NONE] }[a.getFieldValue("OP")],
         c = b[0],
         b = b[1],
         d = Blockly.Arduino.valueToCode(a, "A", b) || "0";
-    a = Blockly.Arduino.valueToCode(a, "B", b) || "0";
-    return c ? [d + c + a, b] : ["Math.pow(" + d + ", " + a + ")", Blockly.Arduino.ORDER_UNARY_POSTFIX]
-};
+    a = Blockly.Arduino.valueToCode(a, "B", b) || "0"; return c ? [d + c + a, b] : ["Math.pow(" + d + ", " + a + ")", Blockly.Arduino.ORDER_UNARY_POSTFIX] };
 Blockly.Arduino.math_single = function(a) {
     var b = a.getFieldValue("OP"),
         c;
@@ -734,38 +632,27 @@ Blockly.Arduino.math_single = function(a) {
         "0";
     switch (b) {
         case "ABS":
-            c = "abs(" + a + ")";
-            break;
+            c = "abs(" + a + ")"; break;
         case "ROOT":
-            c = "sqrt(" + a + ")";
-            break;
+            c = "sqrt(" + a + ")"; break;
         case "LN":
-            c = "log(" + a + ")";
-            break;
+            c = "log(" + a + ")"; break;
         case "EXP":
-            c = "exp(" + a + ")";
-            break;
+            c = "exp(" + a + ")"; break;
         case "POW10":
-            c = "pow(10," + a + ")";
-            break;
+            c = "pow(10," + a + ")"; break;
         case "ROUND":
-            c = "round(" + a + ")";
-            break;
+            c = "round(" + a + ")"; break;
         case "ROUNDUP":
-            c = "ceil(" + a + ")";
-            break;
+            c = "ceil(" + a + ")"; break;
         case "ROUNDDOWN":
-            c = "floor(" + a + ")";
-            break;
+            c = "floor(" + a + ")"; break;
         case "SIN":
-            c = "sin(" + a + " / 180 * Math.PI)";
-            break;
+            c = "sin(" + a + " / 180 * Math.PI)"; break;
         case "COS":
-            c = "cos(" + a + " / 180 * Math.PI)";
-            break;
+            c = "cos(" + a + " / 180 * Math.PI)"; break;
         case "TAN":
-            c = "tan(" + a + " / 180 * Math.PI)"
-    }
+            c = "tan(" + a + " / 180 * Math.PI)" }
     if (c) return [c, Blockly.Arduino.ORDER_UNARY_POSTFIX];
     switch (b) {
         case "LOG10":
@@ -795,41 +682,29 @@ Blockly.Arduino.math_number_property = function(a) {
         Blockly.Arduino.addInclude("math", "#include <math.h>"), [a + "(" + b + ")", Blockly.Arduino.ORDER_UNARY_POSTFIX];
     switch (c) {
         case "EVEN":
-            d = b + " % 2 == 0";
-            break;
+            d = b + " % 2 == 0"; break;
         case "ODD":
-            d = b + " % 2 == 1";
-            break;
+            d = b + " % 2 == 1"; break;
         case "WHOLE":
             Blockly.Arduino.addInclude("math", "#include <math.h>");
-            d = "(floor(" + b + ") == " + b + ")";
-            break;
+            d = "(floor(" + b + ") == " + b + ")"; break;
         case "POSITIVE":
-            d = b + " > 0";
-            break;
+            d = b + " > 0"; break;
         case "NEGATIVE":
-            d = b + " < 0";
-            break;
+            d = b + " < 0"; break;
         case "DIVISIBLE_BY":
-            a = Blockly.Arduino.valueToCode(a, "DIVISOR", Blockly.Arduino.ORDER_MULTIPLICATIVE) || "0", d = b + " % " + a + " == 0"
-    }
+            a = Blockly.Arduino.valueToCode(a, "DIVISOR", Blockly.Arduino.ORDER_MULTIPLICATIVE) || "0", d = b + " % " + a + " == 0" }
     return [d, Blockly.Arduino.ORDER_EQUALITY]
 };
 Blockly.Arduino.math_change = function(a) { var b = Blockly.Arduino.valueToCode(a, "DELTA", Blockly.Arduino.ORDER_ADDITIVE) || "0"; return Blockly.Arduino.variableDB_.getName(a.getFieldValue("VAR"), Blockly.Variables.NAME_TYPE) + " += " + b + ";\n" };
 Blockly.Arduino.math_round = Blockly.Arduino.math_single;
 Blockly.Arduino.math_trig = Blockly.Arduino.math_single;
 Blockly.Arduino.math_on_list = Blockly.Arduino.noGeneratorCodeInline;
-Blockly.Arduino.math_modulo = function(a) {
-    var b = Blockly.Arduino.valueToCode(a, "DIVIDEND", Blockly.Arduino.ORDER_MULTIPLICATIVE) || "0";
-    a = Blockly.Arduino.valueToCode(a, "DIVISOR", Blockly.Arduino.ORDER_MULTIPLICATIVE) || "0";
-    return [b + " % " + a, Blockly.Arduino.ORDER_MULTIPLICATIVE]
-};
-Blockly.Arduino.math_constrain = function(a) {
-    var b = Blockly.Arduino.valueToCode(a, "VALUE", Blockly.Arduino.ORDER_NONE) || "0",
+Blockly.Arduino.math_modulo = function(a) { var b = Blockly.Arduino.valueToCode(a, "DIVIDEND", Blockly.Arduino.ORDER_MULTIPLICATIVE) || "0";
+    a = Blockly.Arduino.valueToCode(a, "DIVISOR", Blockly.Arduino.ORDER_MULTIPLICATIVE) || "0"; return [b + " % " + a, Blockly.Arduino.ORDER_MULTIPLICATIVE] };
+Blockly.Arduino.math_constrain = function(a) { var b = Blockly.Arduino.valueToCode(a, "VALUE", Blockly.Arduino.ORDER_NONE) || "0",
         c = Blockly.Arduino.valueToCode(a, "LOW", Blockly.Arduino.ORDER_NONE) || "0";
-    a = Blockly.Arduino.valueToCode(a, "HIGH", Blockly.Arduino.ORDER_NONE) || "0";
-    return ["(" + b + " < " + c + " ? " + c + " : ( " + b + " > " + a + " ? " + a + " : " + b + "))", Blockly.Arduino.ORDER_UNARY_POSTFIX]
-};
+    a = Blockly.Arduino.valueToCode(a, "HIGH", Blockly.Arduino.ORDER_NONE) || "0"; return ["(" + b + " < " + c + " ? " + c + " : ( " + b + " > " + a + " ? " + a + " : " + b + "))", Blockly.Arduino.ORDER_UNARY_POSTFIX] };
 Blockly.Arduino.math_random_int = function(a) {
     var b = Blockly.Arduino.valueToCode(a, "FROM", Blockly.Arduino.ORDER_NONE) || "0";
     a = Blockly.Arduino.valueToCode(a, "TO", Blockly.Arduino.ORDER_NONE) || "0";
@@ -841,7 +716,7 @@ Blockly.Arduino.math_random_int = function(a) {
 };
 Blockly.Arduino.math_random_float = function(a) { return ["(rand() / RAND_MAX)", Blockly.Arduino.ORDER_UNARY_POSTFIX] };
 Blockly.Arduino.procedures = {};
-var foo = function(a) {
+Blockly.Arduino.procedures_defreturn = function(a) {
     var b = Blockly.Arduino.variableDB_.getName(a.getFieldValue("NAME"), Blockly.Procedures.NAME_TYPE),
         c = Blockly.Arduino.statementToCode(a, "STACK");
     Blockly.Arduino.STATEMENT_PREFIX && (c = Blockly.Arduino.prefixLines(Blockly.Arduino.STATEMENT_PREFIX.replace(/%1/g, "'" + a.id + "'"), Blockly.Arduino.INDENT) + c);
@@ -858,45 +733,36 @@ var foo = function(a) {
     Blockly.Arduino.userFunctions_[b] = c;
     return null
 };
-Blockly.Arduino.arduino_functions = function(a) {
-    var b = Blockly.Arduino.statementToCode(a, "SETUP_FUNC");
+Blockly.Arduino.procedures_defnoreturn = Blockly.Arduino.procedures_defreturn;
+Blockly.Arduino.procedures_callreturn = function(a) { for (var b = Blockly.Arduino.variableDB_.getName(a.getFieldValue("NAME"), Blockly.Procedures.NAME_TYPE), c = [], d = 0; d < a.arguments_.length; d++) c[d] = Blockly.Arduino.valueToCode(a, "ARG" + d, Blockly.Arduino.ORDER_NONE) || "null"; return [b + "(" + c.join(", ") + ")", Blockly.Arduino.ORDER_UNARY_POSTFIX] };
+Blockly.Arduino.procedures_callnoreturn = function(a) { for (var b = Blockly.Arduino.variableDB_.getName(a.getFieldValue("NAME"), Blockly.Procedures.NAME_TYPE), c = [], d = 0; d < a.arguments_.length; d++) c[d] = Blockly.Arduino.valueToCode(a, "ARG" + d, Blockly.Arduino.ORDER_NONE) || "null"; return b + "(" + c.join(", ") + ");\n" };
+Blockly.Arduino.procedures_ifreturn = function(a) { var b = "if (" + (Blockly.Arduino.valueToCode(a, "CONDITION", Blockly.Arduino.ORDER_NONE) || "false") + ") {\n";
+    a.hasReturnValue_ ? (a = Blockly.Arduino.valueToCode(a, "VALUE", Blockly.Arduino.ORDER_NONE) || "null", b += "  return " + a + ";\n") : b += "  return;\n"; return b + "}\n" };
+Blockly.Arduino.arduino_functions = function(a) { var b = Blockly.Arduino.statementToCode(a, "SETUP_FUNC");
     b && Blockly.Arduino.addSetup("userSetupCode", b, !0);
     a = a.getInputTargetBlock("LOOP_FUNC");
-    b = Blockly.Arduino.blockToCode(a);
-    if (!goog.isString(b)) throw 'Expecting code from statement block "' + a.type + '".';
-    return b
-};
+    b = Blockly.Arduino.blockToCode(a); if (!goog.isString(b)) throw 'Expecting code from statement block "' + a.type + '".'; return b };
 Blockly.Arduino.serial = {};
 Blockly.Arduino.serial_print = function(a) { for (var b = a.getFieldValue("SERIAL_ID"), c = Blockly.Arduino.valueToCode(a, "CONTENT", Blockly.Arduino.ORDER_ATOMIC) || "0", d = "TRUE" == a.getFieldValue("NEW_LINE"), e = Blockly.Arduino.Boards.selected.serialPins[b], f = 0; f < e.length; f++) Blockly.Arduino.reservePin(a, e[f][1], Blockly.Arduino.PinTypes.SERIAL, "SERIAL " + e[f][0]); return d ? b + ".println(" + c + ");\n" : b + ".print(" + c + ");\n" };
-Blockly.Arduino.serial_setup = function(a) {
-    var b = a.getFieldValue("SERIAL_ID");
+Blockly.Arduino.serial_setup = function(a) { var b = a.getFieldValue("SERIAL_ID");
     a = a.getFieldValue("SPEED");
-    Blockly.Arduino.addSetup("serial_" + b, b + ".begin(" + a + ");", !0);
-    return ""
-};
+    Blockly.Arduino.addSetup("serial_" + b, b + ".begin(" + a + ");", !0); return "" };
 Blockly.Arduino.servo = {};
-Blockly.Arduino.servo_write = function(a) {
-    var b = a.getFieldValue("SERVO_PIN"),
+Blockly.Arduino.servo_write = function(a) { var b = a.getFieldValue("SERVO_PIN"),
         c = Blockly.Arduino.valueToCode(a, "SERVO_ANGLE", Blockly.Arduino.ORDER_ATOMIC) || "90",
         d = "myServo" + b;
     Blockly.Arduino.reservePin(a, b, Blockly.Arduino.PinTypes.SERVO, "Servo Write");
     Blockly.Arduino.addInclude("servo", "#include <Servo.h>");
     Blockly.Arduino.addDeclaration("servo_" + b, "Servo " + d + ";");
-    Blockly.Arduino.addSetup("servo_" + b, d + ".attach(" + b + ");", !0);
-    return d + ".write(" + c + ");\n"
-};
-Blockly.Arduino.servo_read = function(a) {
-    var b = a.getFieldValue("SERVO_PIN"),
+    Blockly.Arduino.addSetup("servo_" + b, d + ".attach(" + b + ");", !0); return d + ".write(" + c + ");\n" };
+Blockly.Arduino.servo_read = function(a) { var b = a.getFieldValue("SERVO_PIN"),
         c = "myServo" + b;
     Blockly.Arduino.reservePin(a, b, Blockly.Arduino.PinTypes.SERVO, "Servo Read");
     Blockly.Arduino.addInclude("servo", "#include <Servo.h>");
     Blockly.Arduino.addDeclaration("servo_" + b, "Servo " + c + ";");
-    Blockly.Arduino.addSetup("servo_" + b, c + ".attach(" + b + ");", !0);
-    return [c + ".read()", Blockly.Arduino.ORDER_ATOMIC]
-};
+    Blockly.Arduino.addSetup("servo_" + b, c + ".attach(" + b + ");", !0); return [c + ".read()", Blockly.Arduino.ORDER_ATOMIC] };
 Blockly.Arduino.spi = {};
-Blockly.Arduino.spi_setup = function(a) {
-    var b = a.getFieldValue("SPI_ID"),
+Blockly.Arduino.spi_setup = function(a) { var b = a.getFieldValue("SPI_ID"),
         c = a.getFieldValue("SPI_SHIFT_ORDER"),
         d = a.getFieldValue("SPI_CLOCK_DIVIDE");
     a = a.getFieldValue("SPI_MODE");
@@ -904,9 +770,7 @@ Blockly.Arduino.spi_setup = function(a) {
     Blockly.Arduino.addSetup("spi_order", b + ".setBitOrder(" + c + ");", !0);
     Blockly.Arduino.addSetup("spi_mode", b + ".setDataMode(" + a + ");", !0);
     Blockly.Arduino.addSetup("spi_div", b + ".setClockDivider(" + d + ");", !0);
-    Blockly.Arduino.addSetup("spi_begin", b + ".begin();", !0);
-    return ""
-};
+    Blockly.Arduino.addSetup("spi_begin", b + ".begin();", !0); return "" };
 Blockly.Arduino.spi_transfer = function(a) {
     var b = a.getFieldValue("SPI_ID"),
         c = a.getFieldValue("SPI_SS"),
@@ -949,31 +813,17 @@ Blockly.Arduino.stepper_config = function(a) {
     Blockly.Arduino.addSetup(e, e + ".setSpeed(" + g + ");", !0);
     return ""
 };
-Blockly.Arduino.stepper_step = function(a) {
-    var b = "stepper_" + a.getFieldValue("STEPPER_NAME");
-    a = Blockly.Arduino.valueToCode(a, "STEPPER_STEPS", Blockly.Arduino.ORDER_ATOMIC) || "0";
-    return b + ".step(" + a + ");\n"
-};
+Blockly.Arduino.stepper_step = function(a) { var b = "stepper_" + a.getFieldValue("STEPPER_NAME");
+    a = Blockly.Arduino.valueToCode(a, "STEPPER_STEPS", Blockly.Arduino.ORDER_ATOMIC) || "0"; return b + ".step(" + a + ");\n" };
 Blockly.Arduino.text = {};
 Blockly.Arduino.text = function(a) { return [Blockly.Arduino.quote_(a.getFieldValue("TEXT")), Blockly.Arduino.ORDER_ATOMIC] };
-Blockly.Arduino.text_join = function(a) {
-    var b;
-    if (0 == a.itemCount_) return ['""', Blockly.Arduino.ORDER_ATOMIC];
-    if (1 == a.itemCount_) return ["String(" + (Blockly.Arduino.valueToCode(a, "ADD0", Blockly.Arduino.ORDER_UNARY_POSTFIX) || '""') + ")", Blockly.Arduino.ORDER_UNARY_POSTFIX];
-    var c;
-    b = [];
-    for (var d = 0; d < a.itemCount_; d++) c = Blockly.Arduino.valueToCode(a, "ADD" + d, Blockly.Arduino.ORDER_NONE), b[d] = "" == c ? '""' : "String(" + c + ")";
-    b = b.join(" + ");
-    return [b, Blockly.Arduino.ORDER_UNARY_POSTFIX]
-};
-Blockly.Arduino.text_append = function(a) {
-    var b = Blockly.Arduino.variableDB_.getName(a.getFieldValue("VAR"), Blockly.Variables.NAME_TYPE);
-    a = Blockly.Arduino.valueToCode(a, "TEXT", Blockly.Arduino.ORDER_UNARY_POSTFIX);
-    return b + " += " + ("" == a ? '""' : "String(" + a + ")") + ";\n"
-};
+Blockly.Arduino.text_join = function(a) { var b; if (0 == a.itemCount_) return ['""', Blockly.Arduino.ORDER_ATOMIC]; if (1 == a.itemCount_) return ["String(" + (Blockly.Arduino.valueToCode(a, "ADD0", Blockly.Arduino.ORDER_UNARY_POSTFIX) || '""') + ")", Blockly.Arduino.ORDER_UNARY_POSTFIX]; var c;
+    b = []; for (var d = 0; d < a.itemCount_; d++) c = Blockly.Arduino.valueToCode(a, "ADD" + d, Blockly.Arduino.ORDER_NONE), b[d] = "" == c ? '""' : "String(" + c + ")";
+    b = b.join(" + "); return [b, Blockly.Arduino.ORDER_UNARY_POSTFIX] };
+Blockly.Arduino.text_append = function(a) { var b = Blockly.Arduino.variableDB_.getName(a.getFieldValue("VAR"), Blockly.Variables.NAME_TYPE);
+    a = Blockly.Arduino.valueToCode(a, "TEXT", Blockly.Arduino.ORDER_UNARY_POSTFIX); return b + " += " + ("" == a ? '""' : "String(" + a + ")") + ";\n" };
 Blockly.Arduino.text_length = function(a) { return ["String(" + (Blockly.Arduino.valueToCode(a, "VALUE", Blockly.Arduino.ORDER_UNARY_POSTFIX) || '""') + ").length()", Blockly.Arduino.ORDER_UNARY_POSTFIX] };
-Blockly.Arduino.text_isEmpty = function(a) {
-    var b = [];
+Blockly.Arduino.text_isEmpty = function(a) { var b = [];
     b.push("boolean " + Blockly.Arduino.DEF_FUNC_NAME + "(String msg) {");
     b.push("  if (msg.length() == 0) {");
     b.push("    return true;");
@@ -982,22 +832,13 @@ Blockly.Arduino.text_isEmpty = function(a) {
     b.push("  }");
     b.push("}");
     b = Blockly.Arduino.addFunction("isStringEmpty", b.join("\n"));
-    a = Blockly.Arduino.valueToCode(a, "VALUE", Blockly.Arduino.ORDER_UNARY_POSTFIX);
-    return [b + "(" + ("" == a ? '""' : "String(" + a + ")") + ")", Blockly.Arduino.ORDER_UNARY_POSTFIX]
-};
-Blockly.Arduino.text_trim = function(a) {
-    Blockly.Arduino.text_trim.OPERATORS = { LEFT: ".trim()", RIGHT: ".trim()", BOTH: ".trim()" };
-    var b = a.getFieldValue("MODE"),
+    a = Blockly.Arduino.valueToCode(a, "VALUE", Blockly.Arduino.ORDER_UNARY_POSTFIX); return [b + "(" + ("" == a ? '""' : "String(" + a + ")") + ")", Blockly.Arduino.ORDER_UNARY_POSTFIX] };
+Blockly.Arduino.text_trim = function(a) { Blockly.Arduino.text_trim.OPERATORS = { LEFT: ".trim()", RIGHT: ".trim()", BOTH: ".trim()" }; var b = a.getFieldValue("MODE"),
         b = Blockly.Arduino.text_trim.OPERATORS[b];
-    a = Blockly.Arduino.valueToCode(a, "TEXT", Blockly.Arduino.ORDER_UNARY_POSTFIX);
-    return [("" == a ? '""' : "String(" + a + ")") + b, Blockly.Arduino.ORDER_UNARY_POSTFIX]
-};
-Blockly.Arduino.text_print = function(a) {
-    var b = Blockly.Arduino.Boards.selected.serial[0][1];
+    a = Blockly.Arduino.valueToCode(a, "TEXT", Blockly.Arduino.ORDER_UNARY_POSTFIX); return [("" == a ? '""' : "String(" + a + ")") + b, Blockly.Arduino.ORDER_UNARY_POSTFIX] };
+Blockly.Arduino.text_print = function(a) { var b = Blockly.Arduino.Boards.selected.serial[0][1];
     Blockly.Arduino.addSetup("serial_" + b, b + ".begin(9600);", !1);
-    a = Blockly.Arduino.valueToCode(a, "TEXT", Blockly.Arduino.ORDER_NONE);
-    return b + ".print(" + ("" == a ? '""' : "String(" + a + ")") + ");\n"
-};
+    a = Blockly.Arduino.valueToCode(a, "TEXT", Blockly.Arduino.ORDER_NONE); return b + ".print(" + ("" == a ? '""' : "String(" + a + ")") + ");\n" };
 Blockly.Arduino.text_prompt_ext = function(a) {
     var b = Blockly.Arduino.Boards.selected.serial[0][1],
         c = a.getFieldValue("TYPE"),
@@ -1035,19 +876,13 @@ Blockly.Arduino.time_millis = function(a) { return ["millis()", Blockly.Arduino.
 Blockly.Arduino.time_micros = function(a) { return ["micros()", Blockly.Arduino.ORDER_ATOMIC] };
 Blockly.Arduino.infinite_loop = function(a) { return "while(true);\n" };
 Blockly.Arduino.tone = {};
-Blockly.Arduino.io_tone = function(a) {
-    var b = a.getFieldValue("TONEPIN"),
+Blockly.Arduino.io_tone = function(a) { var b = a.getFieldValue("TONEPIN"),
         c = Blockly.Arduino.valueToCode(a, "FREQUENCY", Blockly.Arduino.ORDER_ATOMIC);
     Blockly.Arduino.reservePin(a, b, Blockly.Arduino.PinTypes.OUTPUT, "Tone Pin");
-    Blockly.Arduino.addSetup("io_" + b, "pinMode(" + b + ", OUTPUT);\n", !1);
-    return "tone(" + b + "," + c + ");\n"
-};
-Blockly.Arduino.io_notone = function(a) {
-    var b = a.getFieldValue("TONEPIN");
+    Blockly.Arduino.addSetup("io_" + b, "pinMode(" + b + ", OUTPUT);\n", !1); return "tone(" + b + "," + c + ");\n" };
+Blockly.Arduino.io_notone = function(a) { var b = a.getFieldValue("TONEPIN");
     Blockly.Arduino.reservePin(a, b, Blockly.Arduino.PinTypes.OUTPUT, "Tone Pin");
-    Blockly.Arduino.addSetup("io_" + b, "pinMode(" + b + ", OUTPUT);\n", !1);
-    return "noTone(" + b + ");\n"
-};
+    Blockly.Arduino.addSetup("io_" + b, "pinMode(" + b + ", OUTPUT);\n", !1); return "noTone(" + b + ");\n" };
 Blockly.Arduino.variables = {};
 Blockly.Arduino.variables_get = function(a) { return [Blockly.Arduino.variableDB_.getName(a.getFieldValue("VAR"), Blockly.Variables.NAME_TYPE), Blockly.Arduino.ORDER_ATOMIC] };
 Blockly.Arduino.variables_set = function(a) { var b = Blockly.Arduino.valueToCode(a, "VALUE", Blockly.Arduino.ORDER_ASSIGNMENT) || "0"; return Blockly.Arduino.variableDB_.getName(a.getFieldValue("VAR"), Blockly.Variables.NAME_TYPE) + " = " + b + ";\n" };
