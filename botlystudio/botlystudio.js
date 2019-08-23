@@ -6,12 +6,6 @@ BotlyStudio.mode = "JS";
 /** Initialize function for BotlyStudio, to be called on page load. */
 BotlyStudio.init = function() {
     // Lang init must run first for the rest of the page to pick the right msgs
-    $('#beta').openModal({
-        dismissible: true,
-        opacity: .5,
-        in_duration: 200,
-        out_duration: 250
-    });
 
 
     BotlyStudio.changeToolbox();
