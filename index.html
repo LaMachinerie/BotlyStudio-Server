@@ -71,6 +71,9 @@
             <!-- Horizontal Navbar links only shown on large resolutions -->
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li>
+                    <a href="http://beta.botly-studio.fr" class="waves-effect waves-light btn modal-trigger">Essayer la Beta</a>
+                </li>
+                <li>
                     <a href="#" id="button_load">
                         <i class="material-icons left">folder</i>
                         <span class="translatable_open">Ouvrir</span>
@@ -92,6 +95,7 @@
             </ul>
         </div>
     </nav>
+
 
     <!-- Sidebar navigation -->
     <ul id="slide-out" class="side-nav">
@@ -268,10 +272,14 @@
         <div class="modal-content">
             <h4>Nouvelle version disponible</h4>
             <p>La nouvelle version de Botly-Studio est disponible ! Vous pouvez l'essayer en cliquant sur le bouton ci dessous.</p>
-            <a href="http://beta.botly-studio.fr" class="modal-close waves-effect waves-green btn-flat">Essayer la BETA</a>
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fermer</a>
+            <p>Celle ci peut encore comporter quelques bugs. N'hésitez pas à nous les signaler pour améliorer la platforme !</p>
+
+
+            <div class="modal-footer">
+                <img src="beta.png" class="left" style="width: 30%; height: auto;">
+                <a href="http://beta.botly-studio.fr" class="waves-effect waves-light btn modal-trigger">Essayer la BETA</a>
+                <a href="#" class="modal-close waves-effect waves-green btn-flat">Rester sur la version actuelle</a>
+            </div>
         </div>
     </div>
 
@@ -413,11 +421,21 @@
     <script src="botlystudio/botlystudio_plugins.js"></script>
 
     <script type='text/javascript'>
-        $('#beta').openModal({
-            dismissible: true,
-            opacity: .5,
-            in_duration: 200,
-            out_duration: 250
+        $(document).ready(function() {
+            // check cookie
+            var visited = document.cookie;
+
+            if (visited != "beta=displayed") {
+                $('#beta').openModal({
+                    dismissible: true,
+                    opacity: .5,
+                    in_duration: 200,
+                    out_duration: 250
+                });
+            } else {
+                let betaKey = "beta=displayed";
+                document.cookie = betaKey;
+            }
         });
     </script>
 
