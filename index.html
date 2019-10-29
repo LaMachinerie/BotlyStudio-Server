@@ -54,7 +54,6 @@
 
 <body>
     <!-- Horizontal Navigation bar -->
-    <!-- Horizontal Navigation bar -->
     <nav class="nav-fixed arduino_teal">
         <div class="nav-wrapper container">
             <a class="show-on-large button-collapse" href="#" data-activates="slide-out" id="button-collapse">
@@ -71,7 +70,7 @@
             <!-- Horizontal Navbar links only shown on large resolutions -->
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li>
-                    <a href="http://beta.botly-studio.fr" class="waves-effect waves-light btn modal-trigger">Essayer la Beta</a>
+                    <a data-target="beta-menu" class="waves-effect waves-light btn modal-trigger">Essayer la Beta</a>
                 </li>
                 <li>
                     <a href="#" id="button_load">
@@ -283,6 +282,17 @@
         </div>
     </div>
 
+    <div id="beta-menu" class="modal">
+        <div class="modal-content">
+            <h4>Nouvelle version disponible</h4>
+            <p>Attention en cliquant sur Valider, vous pedrez votre travail. Pensez à sauvegarder !</p>
+
+            <div class="modal-footer">
+                <a href="#" class="waves-effect waves-light modal-close btn-flat">Annuler</a>
+                <a href="http://beta.botly-studio.fr" class="waves-effect waves-light btn modal-trigger">Valider</a>
+            </div>
+        </div>
+    </div>
 
     <div id="code_dialog" class="modal modal-fixed-footer">
         <pre id="content_code" class="content content_height_transition blocks_panel_large"></pre>
