@@ -69,9 +69,9 @@
             </a>
             <!-- Horizontal Navbar links only shown on large resolutions -->
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li>
+                <!--li>
                     <a data-target="beta-menu" class="waves-effect waves-light btn modal-trigger">Essayer la Beta</a>
-                </li>
+                </li-->
                 <li>
                     <a href="#" id="button_load">
                         <i class="material-icons left">folder</i>
@@ -248,7 +248,7 @@
             <div class='col s12 m12 l4'>
                 <div class='card-panel white' style='padding: 0' id="playground">
                     <!-- IDE Output content -->
-                    <div class="ide_output_wrapper" id='console'>
+                    <div class="ide_output_wrapper" id='console' hidden>
                         <ul class="collapsible ide_output_collapsible" data-collapsible="expandable">
                             <li>
                                 <div id="console_header" class="collapsible-header ide_output_header_normal">
@@ -266,7 +266,7 @@
         </div>
     </div>
 
-    <!-- Modal Structure -->
+    <!-- Modal Structure >
     <div id="beta" class="modal bottom-sheet">
         <div class="modal-content">
             <h4>Nouvelle version disponible</h4>
@@ -292,13 +292,13 @@
                 <a href="http://beta.botly-studio.fr" class="waves-effect waves-light btn modal-trigger">Valider</a>
             </div>
         </div>
-    </div>
+    </div-->
 
-    <div id="code_dialog" class="modal modal-fixed-footer">
-        <pre id="content_code" class="content content_height_transition blocks_panel_large"></pre>
+    <div id="code_dialog" class="modal modal-fixed-footer" hidden>
+        <pre id="content_code" class="content content_height_transition blocks_panel_large" hidden></pre>
         <ul class="collapsible z-depth-1" data-collapsible="accordion" hidden>
             <li>
-                <div class="collapsible-header  active" id="ide_output_collapsible_header">
+                <div class="collapsible-header  active" id="ide_output_collapsible_header" hidden>
                     <span class="collapsible_logo">{ }</span>
                     <span class="translatable_arduinoSourceCode">Code Source</span>
                 </div>
@@ -430,7 +430,7 @@
     <!-- BotlyStudio plugin class -->
     <script src="botlystudio/botlystudio_plugins.js"></script>
 
-    <script type='text/javascript'>
+    <!--script type='text/javascript'>
         $(document).ready(function() {
             // check cookie
             var visited = document.cookie;
@@ -447,7 +447,7 @@
                 document.cookie = betaKey;
             }
         });
-    </script>
+    </script-->
 
     <script>
         window.addEventListener('load', function load(event) {
